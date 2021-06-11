@@ -20,6 +20,7 @@ let config = {
 
 // Déclaration de nos variables globales
 let game = new Phaser.Game(config);
+let successfulDropoff;
 
 //
 function init() {
@@ -41,6 +42,8 @@ function create() {
     var image = this.add.image(200, 250, 'background');
     image.alpha = 0.3;
     image.setScale(0.45);
+    
+    successfulDropoff = 0;
     
     //----les membres-----
     var head = this.add.image(260, 522, 'head', Phaser.Math.RND.pick(frames)).setInteractive();
@@ -197,6 +200,9 @@ function create() {
             gameObject.input.enabled = false;
             console.log(dropZone.name == gameObject.name);
             console.log('successful dropoff of ' + gameObject.name + ' in ' + dropZone.name);
+            
+            successfulDropoff++;
+            console.log(successfulDropoff);
         }
 else{
             gameObject.x = gameObject.input.dragStartX;
@@ -214,6 +220,10 @@ else{
             gameObject.x = gameObject.input.dragStartX;
             gameObject.y = gameObject.input.dragStartY;
         }
+        
+            if(successfulDropoff === 6){
+        console.log("well done!!!!");
+    }
 //
 //        graphics.clear();
 //        graphics.lineStyle(2, 0xffff00);
@@ -222,6 +232,7 @@ else{
         
 
     });
+    
     
 //    var button = this.add.image(30, 160, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
 //
