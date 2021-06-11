@@ -22,6 +22,8 @@ let config = {
 let game = new Phaser.Game(config);
 let successfulDropoff;
 
+var nextArrow;
+
 //
 function init() {
 }
@@ -35,6 +37,8 @@ function preload() {
     this.load.image('hips', './assets/gHips-01.png');
     this.load.image('legL', './assets/gLegL-01.png');
     this.load.image('legR', './assets/gLegR-01.png');
+    
+    this.load.image('nextArrow', './assets/blue-arrow.png');
 
 }
 
@@ -44,6 +48,10 @@ function create() {
     image.setScale(0.45);
     
     successfulDropoff = 0;
+    
+    nextArrow = this.add.image(300, 550, 'nextArrow');
+    nextArrow.setScale(0.7);
+    nextArrow.setVisible(false);
     
     //----les membres-----
     var head = this.add.image(260, 522, 'head', Phaser.Math.RND.pick(frames)).setInteractive();
@@ -221,15 +229,17 @@ else{
             gameObject.y = gameObject.input.dragStartY;
         }
         
-            if(successfulDropoff === 6){
-        console.log("well done!!!!");
+        if(successfulDropoff === 6){
+            console.log("well done!!!!");
+            nextArrow.setVisible(true);
+            nextArrow.setInteractive();
     }
 //
 //        graphics.clear();
 //        graphics.lineStyle(2, 0xffff00);
 //        graphics.strokeRect(zone.x - zone.input.hitArea.width / 2, zone.y - zone.input.hitArea.height / 2, zone.input.hitArea.width, zone.input.hitArea.height);
         
-        
+        nextArrow.on('pointerdown', onClick);
 
     });
     
@@ -257,5 +267,11 @@ else{
 
 
 function update() {
+
+}
+
+function onClick(){
+//    window.open("https://www.google.com", "_blank");
+    window.location.replace("http://www.w3schools.com");
 
 }
