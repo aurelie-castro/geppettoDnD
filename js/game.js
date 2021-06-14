@@ -24,6 +24,14 @@ let successfulDropoff;
 
 var nextArrow;
 
+var holdSound;
+
+var wrongSound;
+
+var correctSound;
+
+var finishSound;
+
 //
 function init() {
 }
@@ -39,6 +47,11 @@ function preload() {
     this.load.image('legR', './assets/gLegR-01.png');
     
     this.load.image('nextArrow', './assets/blue-arrow.png');
+    
+    this.load.audio('hold', './assets/hold.wav');
+    this.load.audio('wrong', './assets/wrong.wav');
+    this.load.audio('correct', './assets/correct.wav');
+    this.load.audio('finish', './assets/finish.wav');
 
 }
 
@@ -46,6 +59,11 @@ function create() {
     var image = this.add.image(200, 250, 'background');
     image.alpha = 0.3;
     image.setScale(0.45);
+    
+    holdSound = this.sound.add('hold');
+    wrongSound = this.sound.add('wrong');
+    correctSound = this.sound.add('correct');
+    finishSound = this.sound.add('finish');
     
     successfulDropoff = 0;
     
@@ -130,6 +148,7 @@ function create() {
     this.input.on('dragstart', function (pointer, gameObject) {
 
         this.children.bringToTop(gameObject);
+        holdSound.play();
 
     }, this);
 
@@ -167,11 +186,14 @@ function create() {
             
             successfulDropoff++;
             console.log(successfulDropoff);
+            correctSound.play();
         }
 else{
             gameObject.x = gameObject.input.dragStartX;
             gameObject.y = gameObject.input.dragStartY;
             console.log('failed dropoff of ' + gameObject.name + ' in ' + dropZone.name);
+    
+            wrongSound.play();
         }
         
 
@@ -183,12 +205,14 @@ else{
         {
             gameObject.x = gameObject.input.dragStartX;
             gameObject.y = gameObject.input.dragStartY;
+            
         }
         
         if(successfulDropoff === 6){
             console.log("well done!!!!");
             nextArrow.setVisible(true);
             nextArrow.setInteractive();
+            finishSound.play();
     }
         
         nextArrow.on('pointerdown', onClick);
