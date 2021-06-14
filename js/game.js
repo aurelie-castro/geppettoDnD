@@ -157,50 +157,6 @@ function create() {
     });
 
     this.input.on('drop', function (pointer, gameObject, dropZone) {
-//        if(gameObject.name == "head" && dropZone.name == "zone1"){
-//            gameObject.x = dropZone.x;
-//            gameObject.y = dropZone.y;
-//
-//            gameObject.input.enabled = false;
-//            console.log(dropZone.name);
-//            console.log(gameObject.name);
-//
-//            console.log(gameObject.name === "head");
-//            console.log(dropZone.name === "zone1");
-//            console.log(gameObject.name + " was dropped off in " + dropZone.name); 
-//        }
-//        
-//        if(gameObject.name == "body" && dropZone.name == "zone2"){
-//            gameObject.x = dropZone.x;
-//            gameObject.y = dropZone.y;
-//
-//            gameObject.input.enabled = false;
-//            console.log(dropZone.name);
-//            console.log(gameObject.name);
-//
-//            console.log(gameObject.name === "cat3");
-//            console.log(dropZone.name === "zone1");
-//            
-//        }
-//        
-//        if(gameObject.name == "handL" && dropZone.name == "zone3"){
-//            gameObject.x = dropZone.x;
-//            gameObject.y = dropZone.y;
-//
-//            gameObject.input.enabled = false;
-//            console.log(dropZone.name);
-//            console.log(gameObject.name);
-//
-//            console.log(gameObject.name === "cat3");
-//            console.log(dropZone.name === "zone1");
-//            
-//        }
-        
-//        else{
-//            gameObject.x = gameObject.input.dragStartX;
-//            gameObject.y = gameObject.input.dragStartY;
-//            console.log('failed dropoff of ' + gameObject.name + ' in ' + dropZone.name);
-//        }
         if(gameObject.name == dropZone.name){
             gameObject.x = dropZone.x;
             gameObject.y = dropZone.y;
@@ -234,34 +190,11 @@ else{
             nextArrow.setVisible(true);
             nextArrow.setInteractive();
     }
-//
-//        graphics.clear();
-//        graphics.lineStyle(2, 0xffff00);
-//        graphics.strokeRect(zone.x - zone.input.hitArea.width / 2, zone.y - zone.input.hitArea.height / 2, zone.input.hitArea.width, zone.input.hitArea.height);
         
         nextArrow.on('pointerdown', onClick);
 
     });
     
-    
-//    var button = this.add.image(30, 160, 'fullscreen', 0).setOrigin(1, 0).setInteractive();
-//
-//        button.on('pointerup', function () {
-//
-//            if (this.scale.isFullscreen)
-//            {
-//                button.setFrame(0);
-//
-//                this.scale.stopFullscreen();
-//            }
-//            else
-//            {
-//                button.setFrame(1);
-//
-//                this.scale.startFullscreen();
-//            }
-//
-//        }, this);
 
 }
 
