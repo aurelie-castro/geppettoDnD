@@ -32,6 +32,8 @@ var correctSound;
 
 var finishSound;
 
+var gameBg;
+
 //
 function init() {
 }
@@ -52,10 +54,14 @@ function preload() {
     this.load.audio('wrong', './assets/wrong.wav');
     this.load.audio('correct', './assets/correct.wav');
     this.load.audio('finish', './assets/finish.wav');
+    
+    this.load.image('gameBg', './assets/feuilledroite-01-01.png');
 
 }
 
-function create() {    
+function create() {
+    gameBg = this.add.image(200, 300, 'gameBg');
+    
     var image = this.add.image(200, 250, 'background');
     image.alpha = 0.3;
     image.setScale(0.45);
