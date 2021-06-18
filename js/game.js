@@ -78,23 +78,23 @@ function create() {
     nextArrow.setVisible(false);
     
     //----les membres-----
-    var head = this.add.image(260, 522, 'head', Phaser.Math.RND.pick(frames)).setInteractive();
+    var head = this.add.image(260, 528, 'head', Phaser.Math.RND.pick(frames)).setInteractive();
     this.input.setDraggable(head);
 //    head.setScale(2);
     head.setName('head');
     head.setScale(0.45);
     
-    var body = this.add.image(60, 550, 'body', Phaser.Math.RND.pick(frames)).setInteractive();
+    var body = this.add.image(70, 550, 'body', Phaser.Math.RND.pick(frames)).setInteractive();
     this.input.setDraggable(body);
     body.setName('body');
     body.setScale(0.45);
     
-    var handL = this.add.image(310, 392, 'handL', Phaser.Math.RND.pick(frames)).setInteractive();
+    var handL = this.add.image(80, 315, 'handL', Phaser.Math.RND.pick(frames)).setInteractive();
     this.input.setDraggable(handL);
     handL.setName('handL');
     handL.setScale(0.45);
     
-    var hips = this.add.image(50, 412, 'hips', Phaser.Math.RND.pick(frames)).setInteractive();
+    var hips = this.add.image(70, 412, 'hips', Phaser.Math.RND.pick(frames)).setInteractive();
     this.input.setDraggable(hips);
     hips.setName('hips');
     hips.setScale(0.45);
@@ -104,14 +104,14 @@ function create() {
     legL.setName('legL');
     legL.setScale(0.45);
     
-    var legR = this.add.image(310, 302, 'legR', Phaser.Math.RND.pick(frames)).setInteractive();
+    var legR = this.add.image(50, 80, 'legR', Phaser.Math.RND.pick(frames)).setInteractive();
     this.input.setDraggable(legR);
     legR.setName('legR');
     legR.setScale(0.45);
     
     //-----les drop zones----
     //  A drop zone
-    var zone = this.add.zone(220, 102, 100, 100).setRectangleDropZone(100, 100);
+    var zone = this.add.zone(220, 102, 100, 140).setRectangleDropZone(100, 140);
     zone.setName('head');
     
     //  A drop zone
@@ -119,7 +119,7 @@ function create() {
     zone2.setName('body');
     
     //  A drop zone
-    var zone3 = this.add.zone(147, 220, 90, 80).setRectangleDropZone(90, 80);
+    var zone3 = this.add.zone(147, 220, 90, 97).setRectangleDropZone(90, 97);
     zone3.setName('handL');
     
     
