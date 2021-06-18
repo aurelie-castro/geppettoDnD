@@ -18,29 +18,36 @@ let config = {
     autoCenter: true
 };
 
-// Déclaration de nos variables globales
+//------------global vars-----------
 let game = new Phaser.Game(config);
+
+//variable de fin de puzzle
 let successfulDropoff;
 
+//var de la flèche
 var nextArrow;
 
+//vars de son
 var holdSound;
-
 var wrongSound;
-
 var correctSound;
-
 var finishSound;
 
+//var du background
 var gameBg;
+
+//var de l'étoile de fin
+var star;
 
 //
 function init() {
 }
 
 function preload() {
+    //---personnage en transparence---
     this.load.image('background', './assets/Gepeto.png');
     
+    //----membres----
     this.load.image('head', './assets/gHead-01.png');
     this.load.image('body', './assets/gBody-01.png');
     this.load.image('handL', './assets/gHandL-01.png');
@@ -48,13 +55,19 @@ function preload() {
     this.load.image('legL', './assets/gLegL-01.png');
     this.load.image('legR', './assets/gLegR-01.png');
     
+     //---arrow next---
     this.load.image('nextArrow', './assets/blue-arrow.png');
     
+    //---audio files---
     this.load.audio('hold', './assets/hold.wav');
     this.load.audio('wrong', './assets/wrong.wav');
     this.load.audio('correct', './assets/correct.wav');
     this.load.audio('finish', './assets/finish.wav');
     
+    //---star at the end---
+    this.load.image('star', './assets/blue-star.png');
+    
+    //---background pattern---
     this.load.image('gameBg', './assets/feuilledroite-01-01.png');
 
 }
@@ -66,13 +79,22 @@ function create() {
     image.alpha = 0.3;
     image.setScale(0.45);
     
+    //---star---
+    star = this.add.image(90,530, 'star');
+    star.setScale(0.2);
+    star.setVisible(false);
+    star.setDepth(0);
+    
+    //---audio---
     holdSound = this.sound.add('hold');
     wrongSound = this.sound.add('wrong');
     correctSound = this.sound.add('correct');
     finishSound = this.sound.add('finish');
     
+    //drop off counter
     successfulDropoff = 0;
     
+    //---next arrow----
     nextArrow = this.add.image(300, 550, 'nextArrow');
     nextArrow.setScale(0.7);
     nextArrow.setVisible(false);
@@ -136,21 +158,22 @@ function create() {
     zone6.setName('hips');
     
     //  Just a visual display of the drop zone
-    var graphics = this.add.graphics();
-    graphics.lineStyle(2, 0xffff00);
-    graphics.strokeRect(zone.x - zone.input.hitArea.width / 2, zone.y - zone.input.hitArea.height / 2, zone.input.hitArea.width, zone.input.hitArea.height);
-    
-    graphics.strokeRect(zone2.x - zone2.input.hitArea.width / 2, zone2.y - zone2.input.hitArea.height / 2, zone2.input.hitArea.width, zone2.input.hitArea.height);
-    
-    graphics.strokeRect(zone3.x - zone3.input.hitArea.width / 2, zone3.y - zone3.input.hitArea.height / 2, zone3.input.hitArea.width, zone3.input.hitArea.height);
-    
-    graphics.strokeRect(zone4.x - zone4.input.hitArea.width / 2, zone4.y - zone4.input.hitArea.height / 2, zone4.input.hitArea.width, zone4.input.hitArea.height);
-    
-    graphics.strokeRect(zone5.x - zone5.input.hitArea.width / 2, zone5.y - zone5.input.hitArea.height / 2, zone5.input.hitArea.width, zone5.input.hitArea.height);
-    
-    graphics.strokeRect(zone6.x - zone6.input.hitArea.width / 2, zone6.y - zone6.input.hitArea.height / 2, zone6.input.hitArea.width, zone6.input.hitArea.height);
+//    var graphics = this.add.graphics();
+//    graphics.lineStyle(2, 0xffff00);
+//    graphics.strokeRect(zone.x - zone.input.hitArea.width / 2, zone.y - zone.input.hitArea.height / 2, zone.input.hitArea.width, zone.input.hitArea.height);
+//    
+//    graphics.strokeRect(zone2.x - zone2.input.hitArea.width / 2, zone2.y - zone2.input.hitArea.height / 2, zone2.input.hitArea.width, zone2.input.hitArea.height);
+//    
+//    graphics.strokeRect(zone3.x - zone3.input.hitArea.width / 2, zone3.y - zone3.input.hitArea.height / 2, zone3.input.hitArea.width, zone3.input.hitArea.height);
+//    
+//    graphics.strokeRect(zone4.x - zone4.input.hitArea.width / 2, zone4.y - zone4.input.hitArea.height / 2, zone4.input.hitArea.width, zone4.input.hitArea.height);
+//    
+//    graphics.strokeRect(zone5.x - zone5.input.hitArea.width / 2, zone5.y - zone5.input.hitArea.height / 2, zone5.input.hitArea.width, zone5.input.hitArea.height);
+//    
+//    graphics.strokeRect(zone6.x - zone6.input.hitArea.width / 2, zone6.y - zone6.input.hitArea.height / 2, zone6.input.hitArea.width, zone6.input.hitArea.height);
     
  
+    //---drag and drop mechanics---
     this.input.on('dragstart', function (pointer, gameObject) {
 
         this.children.bringToTop(gameObject);
@@ -167,17 +190,17 @@ function create() {
 
     this.input.on('dragenter', function (pointer, gameObject, dropZone) {
 
-        graphics.clear();
-        graphics.lineStyle(2, 0x00ffff);
-        graphics.strokeRect(zone.x - zone.input.hitArea.width / 2, zone.y - zone.input.hitArea.height / 2, zone.input.hitArea.width, zone.input.hitArea.height);
-        console.log(gameObject.name);
+//        graphics.clear();
+//        graphics.lineStyle(2, 0x00ffff);
+//        graphics.strokeRect(zone.x - zone.input.hitArea.width / 2, zone.y - zone.input.hitArea.height / 2, zone.input.hitArea.width, zone.input.hitArea.height);
+//        console.log(gameObject.name);
 
     });
 
     this.input.on('dragleave', function (pointer, gameObject, dropZone) {
-        graphics.clear();
-        graphics.lineStyle(2, 0xffff00);
-        graphics.strokeRect(zone.x - zone.input.hitArea.width / 2, zone.y - zone.input.hitArea.height / 2, zone.input.hitArea.width, zone.input.hitArea.height);
+//        graphics.clear();
+//        graphics.lineStyle(2, 0xffff00);
+//        graphics.strokeRect(zone.x - zone.input.hitArea.width / 2, zone.y - zone.input.hitArea.height / 2, zone.input.hitArea.width, zone.input.hitArea.height);
 
     });
 
@@ -219,6 +242,7 @@ else{
             nextArrow.setVisible(true);
             nextArrow.setInteractive();
             finishSound.play();
+            star.setVisible(true);
     }
         
         nextArrow.on('pointerdown', onClick);
