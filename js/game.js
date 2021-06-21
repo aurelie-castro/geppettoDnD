@@ -38,6 +38,7 @@ var gameBg;
 
 //var de l'étoile de fin
 var star;
+var starScale;
 
 //
 function init() {
@@ -80,8 +81,9 @@ function create() {
     image.setScale(0.45);
     
     //---star---
+    starScale = 0.1;
     star = this.add.image(90,530, 'star');
-    star.setScale(0.2);
+    star.setScale(starScale);
     star.setVisible(false);
     star.setDepth(0);
     
@@ -232,6 +234,12 @@ else{
 
 
 function update() {
+    if(successfulDropoff === 6){
+         starScale += 0.001;
+        star.setScale(starScale);
+        if (starScale > 0.2){
+            starScale = 0.2;
+        } }
 
 }
 
