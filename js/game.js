@@ -74,7 +74,8 @@ function preload() {
 }
 
 function create() {
-    gameBg = this.add.image(200, 300, 'gameBg');
+    gameBg = this.add.image(180, 320, 'gameBg');
+    gameBg.setVisible(false);
     
     var image = this.add.image(200, 250, 'background');
     image.alpha = 0.3;
@@ -223,6 +224,7 @@ else{
             nextArrow.setInteractive();
             finishSound.play();
             star.setVisible(true);
+            gameBg.setVisible(true);
     }
         
         nextArrow.on('pointerdown', onClick);
