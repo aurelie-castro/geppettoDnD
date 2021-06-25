@@ -33,6 +33,9 @@ var wrongSound;
 var correctSound;
 var finishSound;
 
+var soundButton;
+var hasBeenClicked;
+
 //var du background
 var gameBg;
 
@@ -65,6 +68,9 @@ function preload() {
     this.load.audio('correct', './assets/correct.wav');
     this.load.audio('finish', './assets/finish.wav');
     
+    //---sound button----
+    this.load.image('soundBtn', './assets/volume-up.png');
+    
     //---star at the end---
     this.load.image('star', './assets/blue-star.png');
     
@@ -76,6 +82,7 @@ function preload() {
 function create() {
     gameBg = this.add.image(180, 320, 'gameBg');
     gameBg.setVisible(false);
+    gameBg.alpha = 0.8;
     
     var image = this.add.image(200, 250, 'background');
     image.alpha = 0.3;
@@ -93,6 +100,13 @@ function create() {
     wrongSound = this.sound.add('wrong');
     correctSound = this.sound.add('correct');
     finishSound = this.sound.add('finish');
+    
+    //----audio  btn----
+    soundButton = this.add.image(50,50, 'soundBtn');
+    soundButton.setScale(0.1);
+    soundButton.setInteractive();
+    soundButton.alpha = 0.5;
+    soundButton.on('pointerdown', enableMusic);
     
     //drop off counter
     successfulDropoff = 0;
@@ -129,7 +143,7 @@ function create() {
     legL.setName('legL');
     legL.setScale(0.45);
     
-    var legR = this.add.image(50, 80, 'legR', Phaser.Math.RND.pick(frames)).setInteractive();
+    var legR = this.add.image(320, 400, 'legR', Phaser.Math.RND.pick(frames)).setInteractive();
     this.input.setDraggable(legR);
     legR.setName('legR');
     legR.setScale(0.45);
@@ -242,6 +256,10 @@ function update() {
         if (starScale > 0.2){
             starScale = 0.2;
         } }
+    
+    if (hasBeenClicked === true){
+        soundButton.alpha = 1;
+        }
 
 }
 
@@ -249,4 +267,8 @@ function onClick(){
 //    window.open("https://www.google.com", "_blank");
     window.location.replace("http://www.w3schools.com");
 
+}
+
+function enableMusic(){
+    hasBeenClicked = true;
 }
