@@ -205,17 +205,13 @@ function create() {
             gameObject.y = dropZone.y;
 
             gameObject.input.enabled = false;
-//            console.log(dropZone.name == gameObject.name);
-//            console.log('successful dropoff of ' + gameObject.name + ' in ' + dropZone.name);
             
             successfulDropoff++;
-//            console.log(successfulDropoff);
             correctSound.play();
         }
 else{
             gameObject.x = gameObject.input.dragStartX;
             gameObject.y = gameObject.input.dragStartY;
-//            console.log('failed dropoff of ' + gameObject.name + ' in ' + dropZone.name);
     
             wrongSound.play();
         }
@@ -233,7 +229,6 @@ else{
         }
         
         if(successfulDropoff === 6){
-//            console.log("well done!!!!");
             nextArrow.setVisible(true);
             nextArrow.setInteractive();
             finishSound.play();
@@ -264,7 +259,6 @@ function update() {
 }
 
 function onClick(){
-//    window.open("https://www.google.com", "_blank");
     window.location.replace("https://games.caramel.be/cat/index.html");
 
 }
