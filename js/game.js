@@ -33,9 +33,6 @@ var wrongSound;
 var correctSound;
 var finishSound;
 
-var soundButton;
-var hasBeenClicked;
-
 //var du background
 var gameBg;
 
@@ -68,9 +65,6 @@ function preload() {
     this.load.audio('correct', './assets/correct.wav');
     this.load.audio('finish', './assets/finish.wav');
     
-    //---sound button----
-    this.load.image('soundBtn', './assets/volume-up.png');
-    
     //---star at the end---
     this.load.image('star', './assets/blue-star.png');
     
@@ -100,13 +94,6 @@ function create() {
     wrongSound = this.sound.add('wrong');
     correctSound = this.sound.add('correct');
     finishSound = this.sound.add('finish');
-    
-    //----audio  btn----
-    soundButton = this.add.image(50,50, 'soundBtn');
-    soundButton.setScale(0.1);
-    soundButton.setInteractive();
-    soundButton.alpha = 0.5;
-    soundButton.on('pointerdown', enableMusic);
     
     //drop off counter
     successfulDropoff = 0;
@@ -251,18 +238,10 @@ function update() {
         if (starScale > 0.2){
             starScale = 0.2;
         } }
-    
-    if (hasBeenClicked === true){
-        soundButton.alpha = 1;
-        }
 
 }
 
 function onClick(){
     window.location.replace("https://games.caramel.be/cat/index.html");
 
-}
-
-function enableMusic(){
-    hasBeenClicked = true;
 }
